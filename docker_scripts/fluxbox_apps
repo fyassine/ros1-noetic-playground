@@ -1,0 +1,7 @@
+[app] (class=Gazebo)
+  [Maximized]   {yes}
+[end]
+
+[app] (class=Rviz)
+  [Maximized]   {yes}
+[end]
