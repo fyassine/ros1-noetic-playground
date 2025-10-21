@@ -1,2 +1,0 @@
-iiwa_control:iiwa_description:iiwa_gazebo:iiwa_hw:iiwa_moveit:iiwa_msgs:iiwa_ros
--DCATKIN_DEVEL_PREFIX=/workspace/devel -DCMAKE_INSTALL_PREFIX=/workspace/install -G Unix Makefiles
