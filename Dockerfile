@@ -4,6 +4,8 @@ RUN apt-get update && apt-get install -y \
     x11vnc xvfb fluxbox nano novnc websockify xterm \
     zsh git curl bat \
     python3-catkin-tools \
+    ros-noetic-moveit \
+    ros-noetic-ros-controllers \
     && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p ~/.vnc && x11vnc -storepasswd 1234 ~/.vnc/passwd

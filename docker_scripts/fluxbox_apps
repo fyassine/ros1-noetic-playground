@@ -1,7 +1,7 @@
-[app] (class=Gazebo)
+[app] (title=.*Gazebo.*)
   [Maximized]   {yes}
 [end]
 
-[app] (class=Rviz)
+[app] (title=.*RViz.*)
   [Maximized]   {yes}
 [end]
