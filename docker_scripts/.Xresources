@@ -1,0 +1,6 @@
+! XTerm settings
+XTerm*faceName: Monospace
+XTerm*faceSize: 14
+XTerm*utf8: 1
+XTerm*locale: true
+XTerm*saveLines: 4096

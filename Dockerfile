@@ -17,6 +17,7 @@ RUN git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/.oh-m
 RUN mkdir -p /root/.fluxbox
 COPY docker_scripts/fluxbox_apps /root/.fluxbox/apps
 COPY docker_scripts/.zshrc_custom /root/.zshrc
+COPY docker_scripts/.Xresources /root/.Xresources
 COPY docker_scripts/start.sh /start.sh
 
 RUN chmod +x /start.sh

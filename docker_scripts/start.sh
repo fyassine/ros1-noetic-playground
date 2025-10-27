@@ -3,7 +3,7 @@
 cleanup() {
     echo "Stopping container, cleaning up..."
     # Kill all child processes gracefully
-    kill -TERM $XVFB_PID $FLUXBOX_PID $VNC_PID $WEBSOCK_PID $RVIZ_PID 2>/dev/null
+    kill -TERM $XVFB_PID $FLUXBOX_PID $VNC_PID $WEBSOCK_PID $RVIZ_PID $XTERM_PID 2>/dev/null
     rm -f /tmp/.X1-lock /tmp/.X11-unix/X1
     exit 0
 }
@@ -18,6 +18,10 @@ XVFB_PID=$!
 sleep 4
 
 export DISPLAY=:1
+
+echo "Loading X resources..."
+xrdb -merge /root/.Xresources
+
 echo "Starting fluxbox..."
 fluxbox > /dev/null 2>&1 &
 FLUXBOX_PID=$!
@@ -41,11 +45,19 @@ sleep 2
 export ROS_MASTER_URI=http://localhost:11311
 export ROS_HOSTNAME=localhost
 source /opt/ros/noetic/setup.zsh
+
+echo "Building catkin workspace..."
+cd /workspace
+catkin_make
 if [ -f /workspace/devel/setup.zsh ]; then source /workspace/devel/setup.zsh; fi
 
 echo "Starting rviz..."
 rviz 2>&1 | grep -v "^\\[WARN\\]" | grep -v "QStandardPaths" &
 RVIZ_PID=$!
+
+echo "Starting terminal..."
+xterm -hold -e "zsh -c 'cd /workspace && source /opt/ros/noetic/setup.zsh && source devel/setup.zsh && catkin_make && source devel/setup.zsh && roslaunch liver_simulation moveit_simulation.launch'" &
+XTERM_PID=$!
 
 wait
 
